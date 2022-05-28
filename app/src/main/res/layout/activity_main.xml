@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16sp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/getallapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Get Installed Apps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/listview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="365dp"
+        android:layout_height="523dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalapp" />
+
+    <Button
+        android:id="@+id/select"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@android:string/selectAll"
+        app:layout_constraintBottom_toTopOf="@+id/totalapp"
+        app:layout_constraintStart_toStartOf="@+id/getallapp"
+        app:layout_constraintTop_toBottomOf="@+id/getallapp" />
+
+    <Button
+        android:id="@+id/deselect"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Unselect All"
+        app:layout_constraintBottom_toTopOf="@+id/totalapp"
+        app:layout_constraintEnd_toEndOf="@+id/getallapp"
+        app:layout_constraintTop_toBottomOf="@+id/getallapp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
