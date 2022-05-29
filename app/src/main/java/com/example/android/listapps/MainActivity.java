@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 	private ListView listView;
 	private TextView text_allapp;
 	private Drawable icon;
-	private Button btnselect, btndeselect, btngetallapp;
+	private Button btnselect, btndeselect, btnmocklocation;
 	private ArrayList<AppData> appsData;
 	private AppDataAdapter appAdapter;
 	
@@ -39,33 +39,42 @@ public class MainActivity extends AppCompatActivity {
 		text_allapp = findViewById(R.id.totalapp);
 		btnselect = (Button) findViewById(R.id.select);
 		btndeselect = (Button) findViewById(R.id.deselect);
-		btngetallapp = (Button) findViewById(R.id.getallapp);
+		btnmocklocation = (Button) findViewById(R.id.mocklocation);
 		
 		appsData = new ArrayList<>();
+		
+		// Return PackageManager instance to find global package information.
+		final PackageManager pm = getPackageManager();
+		//get a list of installed apps.
+		List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+		
+		text_allapp.setText(packages.size() + " Apps are installed");
+		
+		for (ApplicationInfo packageInfo : packages) {
+			
+			icon = packageInfo.loadIcon(getPackageManager());
+			appsData.add(new AppData(packageInfo.loadLabel(getPackageManager()).toString(),
+							packageInfo.packageName, icon, false));
+		}
+		
+		// Create an AppDataAdapter, whose data source is a list of AppData
+		appAdapter = new AppDataAdapter(this, appsData);
+		
+		// Attach the adapter to the listView.
+		listView.setAdapter(appAdapter);
 
 		
-		btngetallapp.setOnClickListener(new View.OnClickListener() {
+		btnmocklocation.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
-				// Return PackageManager instance to find global package information.
-				final PackageManager pm = getPackageManager();
-				//get a list of installed apps.
-				List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-				
-				text_allapp.setText(packages.size() + " Apps are installed");
-				
-				for (ApplicationInfo packageInfo : packages) {
-					
-					icon = packageInfo.loadIcon(getPackageManager());
-					appsData.add(new AppData(packageInfo.loadLabel(getPackageManager()).toString(),
-									packageInfo.packageName, icon, false));
+				// Get the selected apps to mock the location
+				ArrayList<AppData> appsDataSelected = new ArrayList<AppData>();
+				for (int i = 0; i < AppDataAdapter.appsData.size(); i++){
+					if(AppDataAdapter.appsData.get(i).getSelected()) {
+						appsDataSelected.add(appsData.get(i));
+					}
 				}
-				
-				// Create an AppDataAdapter, whose data source is a list of AppData
-				AppDataAdapter appAdapter = new AppDataAdapter(MainActivity.this, appsData);
-				
-				// Attach the adapter to the listView.
+				appAdapter = new AppDataAdapter(MainActivity.this,appsDataSelected);
 				listView.setAdapter(appAdapter);
 			}
 		});
@@ -83,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
 		btndeselect.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				for (int i = 0; i < appsData.size(); i++){
 					appsData.get(i).setSelected(false);
 				}
 				appAdapter = new AppDataAdapter(MainActivity.this,appsData);
 				listView.setAdapter(appAdapter);
+
+				
 			}
 		});
 		

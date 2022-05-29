@@ -91,10 +91,10 @@ public class AppDataAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				
-				View tempview = (View) holder.checkBox.getTag(R.integer.btnplusview);
+				//View tempview = (View) holder.checkBox.getTag(R.integer.btnplusview);
 				//TextView tv = (TextView) tempview.findViewById(R.id.app_name);
 				Integer pos = (Integer)  holder.checkBox.getTag();
-				Toast.makeText(context, "Checkbox "+pos+" clicked!", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(context, "Checkbox "+pos+" clicked!", Toast.LENGTH_SHORT).show();
 				
 				if(appsData.get(pos).getSelected()){
 					appsData.get(pos).setSelected(false);

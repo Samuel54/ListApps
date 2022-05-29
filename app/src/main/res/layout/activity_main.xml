@@ -12,11 +12,11 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/getallapp"
+        android:id="@+id/mocklocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Get Installed Apps"
+        android:text="Mock location to selection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +49,8 @@
         android:layout_marginBottom="8dp"
         android:text="@android:string/selectAll"
         app:layout_constraintBottom_toTopOf="@+id/totalapp"
-        app:layout_constraintStart_toStartOf="@+id/getallapp"
-        app:layout_constraintTop_toBottomOf="@+id/getallapp" />
+        app:layout_constraintStart_toStartOf="@+id/mocklocation"
+        app:layout_constraintTop_toBottomOf="@+id/mocklocation" />
 
     <Button
         android:id="@+id/deselect"
@@ -60,7 +60,7 @@
         android:layout_marginBottom="8dp"
         android:text="Unselect All"
         app:layout_constraintBottom_toTopOf="@+id/totalapp"
-        app:layout_constraintEnd_toEndOf="@+id/getallapp"
-        app:layout_constraintTop_toBottomOf="@+id/getallapp" />
+        app:layout_constraintEnd_toEndOf="@+id/mocklocation"
+        app:layout_constraintTop_toBottomOf="@+id/mocklocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
