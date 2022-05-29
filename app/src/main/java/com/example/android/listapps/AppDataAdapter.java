@@ -85,7 +85,7 @@ public class AppDataAdapter extends BaseAdapter {
 		holder.iconView.setImageDrawable(appsData.get(position).getAppIconId());
 		
 		
-		holder.checkBox.setTag(R.integer.btnplusview, convertView);
+		//holder.checkBox.setTag(R.integer.btnplusview, convertView);
 		holder.checkBox.setTag( position);
 		holder.checkBox.setOnClickListener(new View.OnClickListener() {
 			@Override
